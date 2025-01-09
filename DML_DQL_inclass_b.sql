@@ -1,5 +1,6 @@
 CREATE DATABASE Visionary_Software;
 
+
 USE Visionary_Software;
 
 # Creating our very first table whose name is employees
@@ -17,7 +18,6 @@ CREATE TABLE employees (
 -- Modify -- change the data type of column email to char with maximum character length 100
 
 ALTER TABLE employees MODIFY email char(100);
-
 
 
 -- Rename column email to emails
@@ -53,12 +53,13 @@ INSERT INTO employees (id, first_name, job_title, email, phone_number, hire_date
 
 select * from employees;
 --	Update an Employees Salary 
+
 -- Suppose you want to give a raise to Alice, increasing her salary to  $80,000:
 
-UPDATE EMPLOYEES SET salary = 80000 WHERE first_name = ' Alice' AND last_name = 'Johnson';
+UPDATE employees SET salary = 80000 WHERE first_name = 'Alice' AND last_name = 'Johnson';
 
 
-Select * from employees;
+
 
 
 -- Suppose you want to change the job title of Carol Williams from "UX Designer" to "Senior UX Designer."
@@ -69,17 +70,17 @@ UPDATE employees SET job_title = 'Senior UX Designer' where first_name = 'Carol'
 
 
 --	Updating Multiple Columns You can also update multiple columns at once.
--- For example, if you want to update both the job title and salary for David Brown:
+-- For example, if you want to update both the job title and salary for David Brown (salary 90000 and jobtitle as senior DevOps Engineer):
 
+UPDATE employees SET salary = 90000, job_title = 'senior DevOps Engineer' where first_name = 'David' and last_name = 'Brown';
 
-
+Select * from employees;
 
 -- Delete an Employee
 
 #Suppose you want to remove Bob Smith from the employees table:
 
-
-
+DELETE FROM employees where first_name = 'Bob' and last_name = 'Smith';
 
 ###############################################################
 
@@ -94,7 +95,7 @@ Select * FROM employees;
 
 --	Select Specific Columns for Employees:
 
-Select id, salary, email FROM employees;
+Select id, salary, email FROM employees; 
 
 
 -- SELECT Command with the = (Equal to) Operator:
@@ -120,31 +121,30 @@ SELECT * FROM employees WHERE first_name = 'David';
 -- 4.3.1 Not Equal To( != or <>):
 -- To find all employees whose job title is not "Software Engineer," you can use:
 
-
+SELECT * from employees where job_title <> 'Software Engineer';
 
 
 -- 4.3.2 Greater Than( >):
 -- To find all employees with a salary greater than $70,000, you can use:
 
+select * from employees where salary > 70000 ; 
 
-Select * from employees;
 
 -- 4.3.3 Less Than(<):
 -- To find all employees hired before January 1, 2020, you can use
 
+select * from employees where hire_date < '2020-01-01';
 
 
 -- 4.3.4 Greater Than or Equal To(>=):
 -- To find all employees with a salary greater than or equal to $60,000, you can use:
 
-
-
-
+select * from employees where salary >= 60000 ;
 
 -- 4.3.5 Less Than or Equal To(<=):
 -- To find all employees hired on or before December 31, 2022, you can use:
 
-
+select * from employees where hire_date <= '2022-12-31';
 
 
 
@@ -156,9 +156,7 @@ Select * from employees;
 
 -- To find all employees whose salaries are between $50,000 and $80,000:
 
-
-
-
+Select * from employees where salary between 50000 and 80000 ; 
 
 
 -- Use of Select command with Like Operator:
@@ -171,11 +169,13 @@ Select * from employees;
 --	Using LIKE to Find Employees with a Specific Pattern:
 To find all employees whose first names start with "A":
 
-
+select * from employees where first_name LIKE 'A%';
 
 
 --	Using LIKE to Find Employees with a Specific Substring
 -- To find all employees whose last names contain "son":
+
+SELECT * FROM employees WHERE last_name LIKE '%son%';
 
 
 
@@ -183,17 +183,19 @@ To find all employees whose first names start with "A":
 --	Using LIKE with a Single Character Wildcard
 -- To find all employees with a last name that has "a" as the second character:
 
-
+SELECT * FROM employees WHERE last_name LIKE '_a%';
 
 --	Using NOT LIKE to Exclude a Pattern
 -- To find all employees with a last name that has not "a" as the second character:
 
+SELECT * FROM employees WHERE last_name NOT LIKE '_a%';
 
 -- Use of SELECT Command using AND and OR operator: 
 
 -- Using And Operator:
 -- To find all employees who are "Software Engineers" and have a salary greater than $70,000:
 
+Select * FROM employees WHERE job_title = 'Software Engineer' and salary > 70000;
 
 
 
@@ -201,14 +203,14 @@ To find all employees whose first names start with "A":
 -- Finding Employees Hired After a Certain Date with a Specific Job Title
 -- To find employees hired after January 1, 2021, who are "Product Managers":
 
-
+Select * FROM employees WHERE job_title = 'Product Mannager' and hire_date > '2021-01-01';
 
 
 -- Using OR operator:
 -- Finding Employees in Specific Job Titles
 -- To find all employees who are either "Software Engineer" or "QA Engineer":
 
-
+Select * FROM employees WHERE job_title = 'Software Engineer' or job_title = 'QA' ;
 
 
 
